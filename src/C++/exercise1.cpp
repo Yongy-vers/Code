@@ -4,11 +4,13 @@
 */
 
 #include<iostream>
-#include<string>
-#include<fstream>
-#include<cstdlib>
-#include<iomanip>
+#include<string>	//string
+#include<fstream>	//ofstream
+#include<cstdlib>	//exit()
+#include<iomanip>	//setw()
+
 #define SIZE 1000	//record size
+
 using namespace std;
 struct student{
 	string firstname, lastname;
