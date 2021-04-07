@@ -1,10 +1,11 @@
 /*	list.h -- declarations for list.	*/
 /*	ADT list{
-**			Element;	}implemented by
-**			Relation;	}a struct
+**			[Element;	]implemented by
+**			[elation;	]a struct
 **
-**			Operations;	}functions
+**			[Operations;	]functions
 **		}
+*/
 #ifndef	_LIST_H
 #define _LIST_H
 
