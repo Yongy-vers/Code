@@ -46,26 +46,26 @@ bool createList(list *L);
 */
 bool deleteList(list *L);
 
-/*	function: addList()
+/*	function: addItem()
 **	interface: Address of the list, an integer to indicate the insert place, and the value inserted
 **	influence: At the place of i th, Insert a node with element equal to e
 **	return: true(success)	false(wrong place or other failures)
 */
-bool addList(list *L, int i, Element e);
+bool addItem(list *L, int i, Element e);
 
-/*	function: removeList()
+/*	function: deleteItem()
 **	interface: Address of the list, the number of node to be deleted, and the deleted element value
 **	influence: Delete the ith node
 **	return: ture(success)	false(wrong place or other failures)
 */
-bool removeList(list *L, int i, Element *e);
+bool deleteItem(list *L, int i, Element *e);
 
-/*	function: searchList()
+/*	function: searchItem()
 **	interface: Name of list, the initial search place, the value searched
 **	influence: Search a node with specified element value
 **	return: nodeplace(success)	false(failed search)
 */
-int searchList(list L, int i, Element e);
+int searchItem(list L, int i, Element e);
 
 /*	function: traverse()
 **	interface: Name of list
@@ -73,4 +73,7 @@ int searchList(list L, int i, Element e);
 **	return: none
 */
 void traverse(list L);
+
+bool isFull(const list *L);
+bool isEmpty(const list *L);
 #endif
