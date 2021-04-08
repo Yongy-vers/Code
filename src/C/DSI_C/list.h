@@ -33,11 +33,11 @@ typedef struct node* list;
 void initList(list *L);
 
 /*	function: createList()
-**	interface: Address of a list
+**	interface: Address of a list, with the num of node equals n
 **	influence: create a list with meaningful node
 **	return: true(success)	false(failure)
 */
-bool createList(list *L);
+bool createList(list *L, int n);
 
 /*	function: deleteList()
 **	interface: Address of the list
@@ -74,6 +74,8 @@ int searchItem(list L, int i, Element e);
 */
 void traverse(list L);
 
-bool isFull(const list *L);
-bool isEmpty(const list *L);
+/*bool isFull(const list L);*/
+
+bool isEmpty(const list L);
+int elemNum(const list L);
 #endif
