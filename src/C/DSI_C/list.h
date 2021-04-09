@@ -61,11 +61,11 @@ bool addItem(list *L, int i, Element e);
 bool deleteItem(list *L, int i, Element *e);
 
 /*	function: searchItem()
-**	interface: Name of list, the initial search place, the value searched
+**	interface: Name of list,  the value searched
 **	influence: Search a node with specified element value
 **	return: nodeplace(success)	false(failed search)
 */
-int searchItem(list L, int i, Element e);
+int searchItem(list L, Element e);
 
 /*	function: traverse()
 **	interface: Name of list

@@ -7,11 +7,10 @@
 #include<string.h>
 #include"list.h"
 
-#define SIZE 100
-#define INCREMENT 10
 
 void getDirective(char *str);
 int direct(const char *str);
+
 
 void initList(list *L)
 {
@@ -120,35 +119,22 @@ bool deleteItem(list *L, int i, Element *e)
 	return true;
 }
 
-int searchItem(list L, int i, Element e)
+int searchItem(list L, Element e)
 {
 	list p = L;
-	int j = 1;
-	int k = 0;
-	while(L != NULL){
-		k++;
-		L = L->next;
-	}
-	if(i > k){
-		printf("wrong search!\n");
-		return false;
-	}
-	while(p && j < i){
+	int j = 0;
+	while(p){
 		j++;
 		p = p->next;
-	}
-	while(p){
 		if(p->elem == e)
 			return j;
-		j++;
-		p = p->next;
 	}
 	return false;
 }
 
 void traverse(list L)
 {
-	puts("Your list: ");
+	puts("your list: ");
 	while(L->next){
 		printf("%d ", L->next->elem);
 		L = L->next;
@@ -164,6 +150,7 @@ int main()
 		exit(-1);
 	}
 	initList(&L);
+	list *R = &L;	//set this to find the first node
 	printf("List length: ");
 	int length;
 	scanf("%d", &length);
@@ -176,6 +163,7 @@ int main()
 	Element e;
 	printf("Now there are five choices for you:\n");
 	printf("1.add	 2.delete	3.search	4.traverse	5.exit\n");
+	printf("Node: (en)");
 	while(1){
 		printf("\nInput your action>> ");
 		fflush(stdin);
@@ -202,21 +190,22 @@ int main()
 				}
 				break;
 			case 3:
-				printf("you have chosen the search operation, now input the initial place and value searched:\n");
-				scanf("%d %d", &i, &e);
-				int j = searchItem(L, i, e);
+				printf("you have chosen the search operation, now input the value searched:\n");
+				scanf("%d", &e);
+				int j = searchItem(L, e);
 				if(!j){
-					printf("there is possibly no value %d in the list or something wrong.\n", e);
+					printf("there is possibly no value %d in the list.\n", e);
 				}
 				else{
-					printf("%d has been found in %d.\n", e, i);
+					printf("%d has been found in %d.\n", e, j);
 				}
 				break;
 			case 4:
 				printf("you have chosen the traverse operation.\n");
-				traverse(L);
+				traverse(*R);
 				break;
 			case 5:
+				deleteList(R);
 				printf("exiting~\n");
 				exit(EXIT_SUCCESS);
 		}
