@@ -123,7 +123,7 @@ int searchItem(list L, Element e)
 {
 	list p = L;
 	int j = 0;
-	while(p){
+	while(p->next){
 		j++;
 		p = p->next;
 		if(p->elem == e)
@@ -134,10 +134,11 @@ int searchItem(list L, Element e)
 
 void traverse(list L)
 {
+	list p = L;
 	puts("your list: ");
-	while(L->next){
-		printf("%d ", L->next->elem);
-		L = L->next;
+	while(p->next){
+		printf("%d ", p->elem);
+		p = p->next;
 	}
 }
 
