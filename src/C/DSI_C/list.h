@@ -1,7 +1,7 @@
 /*	list.h -- declarations for list.	*/
 /*	ADT list{
 **			[Element;	]implemented by
-**			[elation;	]a struct
+**			[Relation;	]a struct
 **
 **			[Operations;	]functions
 **		}
