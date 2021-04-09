@@ -19,7 +19,7 @@ typedef int Element;	//change as needed
 typedef struct node{
 	Element elem;		// element
 	struct node *next;	// a pointer pointed to the next node
-};
+}node;
 
 	// head node (actually a pointer to the first node)
 typedef struct node* list;
@@ -77,5 +77,5 @@ void traverse(list L);
 /*bool isFull(const list L);*/
 
 bool isEmpty(const list L);
-int elemNum(const list L);
+int elemNum(list L);
 #endif
