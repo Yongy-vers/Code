@@ -12,12 +12,6 @@ void getDirective(char *str);
 int direct(const char *str);
 
 
-void initList(list *L)
-{
-	*L = NULL;	//initialize an empty list
-	printf("List initialized done!\n");
-}
-
 bool isEmpty(const list L)
 {
 	if(L == NULL)
@@ -26,12 +20,13 @@ bool isEmpty(const list L)
 		return false;
 }
 
-int eleNum(list L)
+int eleNum(const list L)
 {
+	list p = L;
 	int i = 0;
-	while(L != NULL){
+	while(p != NULL){
 		i++;
-		L = L->next;
+		p = p->next;
 	}
 	return i;
 }
@@ -47,10 +42,11 @@ bool isFull(const list L)
 }
 */
 
-bool createList(list *L, int n)
+list *createList(list *L, int n)
 {
-	*L = (struct node*)malloc(sizeof(struct node));		/*although struct node == node, when describe a pointer, I perfer the struct.*/
+	*L = (struct node*)malloc(sizeof(struct node));		/* head node*/
 	(*L)->next = NULL;
+	list *q = L;
 	int i;
 	printf("Input your data one by one: ");
 	for(i = 0; i < n; i++){
@@ -64,22 +60,23 @@ bool createList(list *L, int n)
 		(*L)->next = p;
 	}
 	printf("List created done!\n");
-	return true;
+	return q;
 }
 
-bool deleteList(list *L)
+bool deleteList(const list *L)
 {
 	struct node *p;
-	while(*L != NULL){
-		p = (*L)->next;
-		free(*L);
-		*L = p;
+	list *q = L;
+	while(*q != NULL){
+		p = (*q)->next;
+		free(*q);
+		*q = p;
 	}
 	printf("list has been deleted!\n");
 	return true;
 }
 
-bool addItem(list *L, int i, Element e)
+bool addItem(const list *L, int i, Element e)
 {
 	list *p = L;
 	struct node *s;
@@ -100,7 +97,7 @@ bool addItem(list *L, int i, Element e)
 	return true;
 }
 
-bool deleteItem(list *L, int i, Element *e)
+bool deleteItem(const list *L, int i, Element *e)
 {
 	list *p = L;
 	struct node *q;
@@ -119,26 +116,26 @@ bool deleteItem(list *L, int i, Element *e)
 	return true;
 }
 
-int searchItem(list L, Element e)
+int searchItem(const list L, const Element e)
 {
-	list p = L;
+	list *p = &L;
 	int j = 0;
-	while(p->next){
+	while((*p)->next){
 		j++;
-		p = p->next;
-		if(p->elem == e)
+		(*p) = (*p)->next;
+		if((*p)->elem == e)
 			return j;
 	}
 	return false;
 }
 
-void traverse(list L)
+void traverse(const list *L)
 {
-	list p = L;
+	list *p = L;
 	puts("your list: ");
-	while(p->next){
-		printf("%d ", p->elem);
-		p = p->next;
+	while((*p)->next){
+		printf("%d ", (*p)->next->elem);
+		*p = (*p)->next;
 	}
 }
 
@@ -150,12 +147,11 @@ int main()
 		fprintf(stderr, "error to allocate memory!\n");
 		exit(-1);
 	}
-	initList(&L);
-	list *R = &L;	//set this to find the first node
 	printf("List length: ");
 	int length;
 	scanf("%d", &length);
-	if(!createList(&L, length)){
+	list *q = createList(&L, length);
+	if(!q){
 		fprintf(stderr, "failed to create list\n");
 		exit(-1);
 	}
@@ -193,7 +189,7 @@ int main()
 			case 3:
 				printf("you have chosen the search operation, now input the value searched:\n");
 				scanf("%d", &e);
-				int j = searchItem(L, e);
+				int j = searchItem(*q, e);
 				if(!j){
 					printf("there is possibly no value %d in the list.\n", e);
 				}
@@ -203,10 +199,10 @@ int main()
 				break;
 			case 4:
 				printf("you have chosen the traverse operation.\n");
-				traverse(*R);
+				traverse(q);
 				break;
 			case 5:
-				deleteList(R);
+				deleteList(&L);
 				printf("exiting~\n");
 				exit(EXIT_SUCCESS);
 		}

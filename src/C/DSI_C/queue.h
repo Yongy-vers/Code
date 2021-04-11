@@ -1,6 +1,6 @@
 /*	queue.h -- declarations for sequential queue	*/
 /*	ADT queue{	
-**		[Element]	:Element elem
+**		[Element]
 **		[Relation]
 **		[operations]
 **	}
