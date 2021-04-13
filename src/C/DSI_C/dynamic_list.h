@@ -68,8 +68,10 @@ int searchItem(const list L, const Element e);
 */
 void traverse(const list *L);
 
-/*bool isFull(const list L);*/
-
+	/* these two are common function maybe used. */
+/*	isEmpty() -- check the list is empty or not. (empty --> true), (not empty -->false)	*/
 bool isEmpty(const list L);
+
+/*	elemNul() -- get the list length (i.e. the number of elements)				*/
 int elemNum(const list L);
 #endif
