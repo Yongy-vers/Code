@@ -1,22 +1,24 @@
 //	time.cpp --function definitions for class time.
 //		 --a stupid way been used to calculate the time
-#include<iostream>	
-#include"time.h"
 
-using namespace TIME;
+#include"mytime.h"
+#include<iostream>
 
-time::time()
+using std::cout;
+using std::endl;
+
+mytime::mytime()
 {
 	years = days = hours = minutes = 0;
 	seconds = 0;
-	months = JAN;
+	months = 0;
 }
 
-time::~time()
+mytime::~mytime()
 {
 }
 
-time::time(int y, int mon, int d, int h, int min, long int s)
+mytime::mytime(int y, int mon, int d, int h, int min, long int s)
 {
 	years = y;
 	months = mon;
@@ -26,7 +28,7 @@ time::time(int y, int mon, int d, int h, int min, long int s)
 	seconds = s;
 }
 
-void time::addSec(long int s)
+void mytime::addSec(long int s)
 {
 	int m,n;
 	m = (seconds + s) / 60;
@@ -48,7 +50,7 @@ void time::addSec(long int s)
 	years += m;
 }
 
-void time::addMin(int min)
+void mytime::addMin(int min)
 {
 	int m, n;
 	m = (minutes + min) / 60;
@@ -67,7 +69,7 @@ void time::addMin(int min)
 	years += j;
 }
 
-void time::addHour(int h)
+void mytime::addHour(int h)
 {
 	int m, n;
 	m = (hours + h) / 24;
@@ -83,7 +85,7 @@ void time::addHour(int h)
 	years += m;
 }
 
-void time::addDay(int d)
+void mytime::addDay(int d)
 {
 	int m, n;
 	m = (days + d) / 30;
@@ -96,7 +98,7 @@ void time::addDay(int d)
 	years += j;
 }
 
-void time::addMon(int mon)
+void mytime::addMon(int mon)
 {
 	int m, n;
 	m = (months + mon) / 12;
@@ -105,12 +107,12 @@ void time::addMon(int mon)
 	years += m;
 }
 
-void time::addYear(int y)
+void mytime::addYear(int y)
 {
 	years += y;
 }
 
-void time::showTime()
+void mytime::showTime()
 {
 	cout << "years: " << years << endl
 	     << "months: " << months << endl
@@ -120,16 +122,16 @@ void time::showTime()
 	     << "seconds: " << seconds << endl;
 }
 
-time time::operator+(const time &t) const
+mytime mytime::operator+(const mytime &t) const
 {
-	time sum;
+	mytime sum;
 	int m,n;
-        int m = (seconds + t.seconds) / 60;
-        int n = (seconds + t.seconds) % 60;
+        m = (seconds + t.seconds) / 60;
+        n = (seconds + t.seconds) % 60;
         sum.seconds = n;
         int j,k;
-        int j = (minutes + m + t.minutes) / 60;
-        int k = (minutes + m + t.minutes) % 60;
+        j = (minutes + m + t.minutes) / 60;
+        k = (minutes + m + t.minutes) % 60;
         sum.minutes = k;
         m = (hours + j + t.hours) / 24;
         n = (hours + j + t.hours) % 24;
@@ -144,20 +146,21 @@ time time::operator+(const time &t) const
 	return sum;
 }
 
-time time::operator-(const time &t) const
+mytime mytime::operator-(const mytime &t) const
 {
-	time diff;
+	mytime diff;
 	long long int totalSeconds_t = t.seconds + t.minutes * 60 + t.hours * 3600;
 	long long int totalSeconds = seconds + minutes * 60 + hours * 3600;
 	std::cout << "waitint to implement!";
 }
 
-time time::operator*(double n) const
+mytime mytime::operator*(double n) const
 {
-
+	std::cout << "remain to complete\n" << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &os, const time &t)
+/*
+std::ostream &operator<<(std::ostream &os, const mytime &t)
 {
 	os << "years: " << years << endl
            << "months: " << months << endl
@@ -167,3 +170,4 @@ std::ostream &operator<<(std::ostream &os, const time &t)
            << "seconds: " << seconds << endl;
 	return os;
 }
+*/
